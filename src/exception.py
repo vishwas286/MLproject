@@ -1,0 +1,19 @@
+import sys
+import logging
+
+
+def error_message(error, error_deatil:sys):
+    _,_,exc_tb=error_deatil.exc_info()
+    file_name=exc_tb.tb_frame.f_code.co_filename
+    error_massage= "error occured in python script name[{0}] line number [{1}] error massage [{2}]".format(
+    file_name, exc_tb.tb_lineno,str(error))
+    return error_massage
+
+
+class customexception(Exception):
+    def __init__(self, error_massage,error_deatil:sys):
+        super.__init__(self, error_message(error_massage, error_deatil))
+        self.error_massage=error_massage(error_massage,error_deatil=error_deatil)
+
+    def __str__(self):
+        return self.error_massage
