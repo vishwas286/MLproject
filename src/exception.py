@@ -1,5 +1,5 @@
 import sys
-import logging
+from src.logger import logger
 
 
 def error_message(error, error_deatil:sys):
@@ -10,10 +10,14 @@ def error_message(error, error_deatil:sys):
     return error_massage
 
 
-class customexception(Exception):
+class CustomException(Exception):
     def __init__(self, error_massage,error_deatil:sys):
         super.__init__(self, error_message(error_massage, error_deatil))
         self.error_massage=error_massage(error_massage,error_deatil=error_deatil)
 
     def __str__(self):
         return self.error_massage
+    
+
+
+       
